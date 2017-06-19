@@ -21,9 +21,12 @@
     "cli.js"
   ],
   "keywords": [
+    "base64",
     "cli-app",
     "cli",
-    ""
+    "generate",
+    "swish",
+    "qr"
   ],
   "dependencies": {
     "datauri": "^1.0.5",
@@ -32,7 +35,8 @@
     "qr-image": "^3.2.0"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
-    "xo": "^0.17.0"
+    "ava": "*",
+    "is-png": "^1.1.0",
+    "xo": "*"
   }
 }
