@@ -31,7 +31,11 @@ swishQr({
 
 ### swishQr(object)
 
-Returns a promise resolving in to a `base64` string.
+Returns a `Promise` resolving in to a `base64` string.
+
+### swishQr.sync(object)
+
+Returns a `base64` string.
 
 #### object
 

@@ -1,6 +1,7 @@
 'use strict';
 const qr = require('qr-image');
 const Datauri = require('datauri');
+const getStream = require('get-stream');
 
 const datauri = new Datauri();
 
@@ -26,7 +27,7 @@ const mapLock = arr => {
 	return ret;
 };
 
-module.exports = opts => new Promise(resolve => {
+module.exports = opts => {
 	opts = Object.assign({
 		amount: 0,
 		lock: [],
@@ -34,6 +35,18 @@ module.exports = opts => new Promise(resolve => {
 		number: ''
 	}, opts);
 
-	datauri.format('.png', qr.imageSync(`C${opts.number};${opts.amount};${opts.message};${mapLock(opts.lock)}`, {type: 'png'}));
-	resolve(datauri.content);
-});
+	const stream = qr.image(`C${opts.number};${opts.amount};${opts.message};${mapLock(opts.lock)}`, {type: 'png'});
+
+	return getStream.buffer(stream).then(data => datauri.format('.png', data).content);
+};
+
+module.exports.sync = opts => {
+	opts = Object.assign({
+		amount: 0,
+		lock: [],
+		message: '',
+		number: ''
+	}, opts);
+
+	return datauri.format('.png', qr.imageSync(`C${opts.number};${opts.amount};${opts.message};${mapLock(opts.lock)}`, {type: 'png'})).content;
+};
