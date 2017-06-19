@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save swish-qr
+$ npm install swish-qr
 ```
 
 
