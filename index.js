@@ -12,15 +12,15 @@ const mapLock = arr => {
 		return ret;
 	}
 
-	if (arr.includes('amount')) {
+	if (arr.indexOf('amount') !== -1) {
 		ret -= 2;
 	}
 
-	if (arr.includes('message')) {
+	if (arr.indexOf('message') !== -1) {
 		ret -= 4;
 	}
 
-	if (arr.includes('number')) {
+	if (arr.indexOf('number') !== -1) {
 		ret -= 1;
 	}
 
