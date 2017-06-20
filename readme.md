@@ -1,4 +1,4 @@
-# swish-qr
+# swish-qr [![Build Status](https://travis-ci.org/gillstrom/swish-qr.svg?branch=master)](https://travis-ci.org/gillstrom/swish-qr)
 
 > Generate a [Swish](https://www.getswish.se/) QR code
 
