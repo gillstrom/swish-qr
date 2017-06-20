@@ -88,6 +88,7 @@ $ swish-qr --help
 
   Options
     -a, --amount <amount>    The amount of money to send
+    -i, --img                Show QR code in the terminal
     -l, --lock <field>       Lock fields from user input
     -m, --message <message>  The message to send
     -n, --number <number>    The recipient

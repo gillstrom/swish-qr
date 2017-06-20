@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
+const termImg = require('term-img');
 const m = require('.');
 
 const cli = meow([`
@@ -9,6 +10,7 @@ const cli = meow([`
 
 	Options
 	  -a, --amount <amount>    The amount of money to send
+	  -i, --img                Show QR code in the terminal
 	  -l, --lock <field>       Lock fields from user input
 	  -m, --message <message>  The message to send
 	  -n, --number <number>    The recipient
@@ -18,6 +20,7 @@ const cli = meow([`
 `], {
 	alias: {
 		a: 'amount',
+		i: 'img',
 		l: 'lock',
 		m: 'message',
 		n: 'number'
@@ -28,4 +31,18 @@ const cli = meow([`
 	]
 });
 
-m(cli.flags).then(res => console.log(res));
+m(cli.flags).then(res => {
+	if (cli.flags.img) {
+		const buf = res.replace('data:image/png;base64,', '');
+
+		termImg(Buffer.from(buf, 'base64'), {
+			fallback: () => {
+				console.error('iTerm >=2.9 required to show QR code');
+			}
+		});
+
+		return;
+	}
+
+	console.log(res);
+});
