@@ -29,15 +29,19 @@ swishQr({
 
 ## API
 
-### swishQr(object)
+### swishQr(options)
 
 Returns a `Promise` resolving in to a `base64` string.
 
-### swishQr.sync(object)
+### swishQr.sync(options)
 
 Returns a `base64` string.
 
-#### object
+### swishQr.generateString(options)
+
+Returns a formatted string that's used to create the QR code.
+
+#### options
 
 *Required*<br>
 Type: `Object`

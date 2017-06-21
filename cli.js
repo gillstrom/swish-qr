@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
+const qrcodeTerminal = require('qrcode-terminal');
 const termImg = require('term-img');
 const m = require('.');
 
@@ -37,7 +38,7 @@ m(cli.flags).then(res => {
 
 		termImg(Buffer.from(buf, 'base64'), {
 			fallback: () => {
-				console.error('iTerm >=2.9 required to show QR code');
+				qrcodeTerminal.generate(m.generateString(cli.flags), {small: true});
 			}
 		});
 
