@@ -1,6 +1,6 @@
 {
   "name": "swish-qr",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Generate a Swish QR code",
   "license": "MIT",
   "repository": "gillstrom/swish-qr",
