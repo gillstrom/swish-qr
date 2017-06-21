@@ -29,15 +29,19 @@ swishQr({
 
 ## API
 
-### swishQr(object)
+### swishQr(options)
 
 Returns a `Promise` resolving in to a `base64` string.
 
-### swishQr.sync(object)
+### swishQr.sync(options)
 
 Returns a `base64` string.
 
-#### object
+### swishQr.generateString(options)
+
+Returns a formatted string that's used to create the QR code.
+
+#### options
 
 *Required*<br>
 Type: `Object`
@@ -88,6 +92,7 @@ $ swish-qr --help
 
   Options
     -a, --amount <amount>    The amount of money to send
+    -i, --image              Show QR code in the terminal
     -l, --lock <field>       Lock fields from user input
     -m, --message <message>  The message to send
     -n, --number <number>    The recipient

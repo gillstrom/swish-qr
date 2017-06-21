@@ -27,7 +27,7 @@ const mapLock = arr => {
 	return ret;
 };
 
-module.exports = opts => {
+const generateString = opts => {
 	opts = Object.assign({
 		amount: 0,
 		lock: [],
@@ -35,18 +35,18 @@ module.exports = opts => {
 		number: ''
 	}, opts);
 
-	const stream = qr.image(`C${opts.number};${opts.amount};${opts.message};${mapLock(opts.lock)}`, {type: 'png'});
+	return `C${opts.number};${opts.amount};${opts.message};${mapLock(opts.lock)}`;
+};
+
+module.exports = opts => {
+	const str = generateString(opts);
+	const stream = qr.image(str, {type: 'png'});
 
 	return getStream.buffer(stream).then(data => datauri.format('.png', data).content);
 };
 
 module.exports.sync = opts => {
-	opts = Object.assign({
-		amount: 0,
-		lock: [],
-		message: '',
-		number: ''
-	}, opts);
-
-	return datauri.format('.png', qr.imageSync(`C${opts.number};${opts.amount};${opts.message};${mapLock(opts.lock)}`, {type: 'png'})).content;
+	return datauri.format('.png', qr.imageSync(generateString(opts), {type: 'png'})).content;
 };
+
+module.exports.generateString = generateString;

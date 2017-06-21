@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 const meow = require('meow');
+const qrcodeTerminal = require('qrcode-terminal');
+const termImg = require('term-img');
 const m = require('.');
 
 const cli = meow([`
@@ -9,6 +11,7 @@ const cli = meow([`
 
 	Options
 	  -a, --amount <amount>    The amount of money to send
+	  -i, --image              Show QR code in the terminal
 	  -l, --lock <field>       Lock fields from user input
 	  -m, --message <message>  The message to send
 	  -n, --number <number>    The recipient
@@ -18,6 +21,7 @@ const cli = meow([`
 `], {
 	alias: {
 		a: 'amount',
+		i: 'image',
 		l: 'lock',
 		m: 'message',
 		n: 'number'
@@ -28,4 +32,18 @@ const cli = meow([`
 	]
 });
 
-m(cli.flags).then(res => console.log(res));
+m(cli.flags).then(res => {
+	if (cli.flags.image) {
+		const buf = res.replace('data:image/png;base64,', '');
+
+		termImg(Buffer.from(buf, 'base64'), {
+			fallback: () => {
+				qrcodeTerminal.generate(m.generateString(cli.flags), {small: true});
+			}
+		});
+
+		return;
+	}
+
+	console.log(res);
+});
