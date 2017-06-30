@@ -76,30 +76,9 @@ Default: `''`
 The recipient.
 
 
-## CLI
+## Related
 
-```
-$ npm install --global swish-qr
-```
-
-```
-$ swish-qr --help
-
-  Generate a Swish QR code
-
-  Usage
-    $ swish-qr [options]
-
-  Options
-    -a, --amount <amount>    The amount of money to send
-    -i, --image              Show QR code in the terminal
-    -l, --lock <field>       Lock fields from user input
-    -m, --message <message>  The message to send
-    -n, --number <number>    The recipient
-
-  Example
-    $ swish-qr --number 1230000000 --amount 150 --message "Lorem ipsum" --lock amount --lock number
-```
+* [swish-qr-cli](https://github.com/gillstrom/swish-qr-cli) - CLI for this module.
 
 
 ## License
